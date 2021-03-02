@@ -1,8 +1,8 @@
 {
-  "name": "quaderno/quaderno",
+  "name": "alkinoy/quaderno",
   "type": "library",
   "description": "PHP wrapper for the Quaderno REST API",
-  "version": "1.7.2",
+  "version": "1.7.4",
   "keywords": ["billing","receipts", "invoices", "stripe", "paypal", "braintree", "gocardless", "vat", "gst"],
   "homepage": "https://github.com/quaderno/quaderno-php",
   "license": "MIT",

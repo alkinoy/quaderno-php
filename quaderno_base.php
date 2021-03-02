@@ -24,12 +24,15 @@ abstract class QuadernoBase
 
 	}
 
-	public static function apiCall($method, $model, $id = '', $params = null, $data = null)
-	{
-		$url = self::$api_url.$model.($id != '' ? '/'.$id : '').'.json';
-		if (isset($params)) $url .= '?'.http_build_query($params);
-		return QuadernoJSON::exec($url, $method, self::$api_key, 'foo', self::$api_version, $data);
-	}
+    public static function apiCall($method, $model, $id = '', $params = null, $data = null, $jsonVersion = true)
+    {
+        $url = self::$api_url.$model.($id != '' ? '/'.$id : '');
+        if ($jsonVersion) {
+            $url .= '.json';
+        }
+        if (isset($params)) $url .= '?'.http_build_query($params);
+        return QuadernoJSON::exec($url, $method, self::$api_key, 'foo', self::$api_version, $data);
+    }
 
 	public static function ping()
 	{
@@ -66,10 +69,10 @@ abstract class QuadernoBase
 		return self::apiCall(($id ? 'PUT' : 'POST'), $model, $id, null, $data);
 	}
 
-	public static function calculate($params)
-	{
-		return self::apiCall('GET', 'taxes', 'calculate', $params);
-	}
+    public static function calculate($params)
+    {
+        return self::apiCall('GET', 'tax_rates', 'calculate', $params, null, false);
+    }
 
 	public static function retrieve($id, $model, $gateway = 'stripe')
 	{
